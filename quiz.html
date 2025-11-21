@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест — Інформатика (12 балів)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Entry overlay: вибір ролі -->
+    <div id="entry-overlay" class="entry-overlay" role="dialog" aria-modal="true">
+        <div class="entry-card">
+            <h2>Виберіть роль</h2>
+            <p>Увійдіть як Учень або Вчитель. Вчитель повинен ввести пароль.</p>
+            <div class="entry-actions">
+                <button id="entry-student" type="button" class="btn">Учень</button>
+                <button id="entry-teacher" type="button" class="btn ghost">Вчитель</button>
+            </div>
+
+            <form id="teacher-login" class="teacher-login" hidden>
+                <label for="teacher-pass">Введіть пароль вчителя</label>
+                <input id="teacher-pass" name="teacher-pass" type="password" autocomplete="off" class="short" aria-label="Пароль вчителя">
+                <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+                    <button type="submit" class="btn primary">Увійти</button>
+                    <button type="button" id="teacher-cancel" class="btn">Скасувати</button>
+                </div>
+                <div id="teacher-error" class="teacher-error" aria-live="polite" hidden></div>
+            </form>
+        </div>
+    </div>
+    <header class="hero small">
+        <nav class="nav container">
+            <a class="logo" href="index.html">МініСайт</a>
+            <ul class="nav-links">
+                <li><a href="about.html">Про сайт</a></li>
+                <li><a href="quiz.html" class="btn small">Тест</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-inner container">
+            <div class="hero-text">
+                <h1>Тест з інформатики</h1>
+                <p class="lead">12 запитань — максимум 12 балів. Будьте уважні — відповіді підсвічуються після перевірки.</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section quiz card">
+            <!-- Панель для вчителя (показується замість форми при вході вчителя) -->
+            <div id="teacher-panel" class="card" hidden style="display:none">
+                <h3>Панель вчителя</h3>
+                <p class="lead">Тут можна управляти тестом: переглянути правильні відповіді або вийти з режиму вчителя.</p>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+                    <button id="teacher-show-answers" class="btn">Показати всі правильні відповіді</button>
+                    <button id="teacher-logout" class="btn ghost">Вийти з вчительського режиму</button>
+                </div>
+                    <hr style="margin:12px 0">
+                    <div id="teacher-controls" style="display:flex;gap:10px;flex-direction:column;margin-top:8px">
+                        <div style="display:flex;gap:8px;align-items:center">
+                            <label style="font-weight:600;margin-right:8px">Стан тесту:</label>
+                            <button id="toggle-test" class="btn small">Увімкнути/Вимкнути</button>
+                            <span id="test-status" style="color:var(--muted);margin-left:8px">(завантаження...)</span>
+                        </div>
+                        <div style="display:flex;gap:8px;align-items:center">
+                            <button id="export-csv" class="btn">Експорт CSV</button>
+                            <button id="clear-submissions" class="btn ghost">Очистити всі відповіді</button>
+                        </div>
+                        <div id="teacher-submissions" style="margin-top:12px;max-height:300px;overflow:auto"></div>
+                    </div>
+            </div>
+
+            <form id="quiz-form">
+                <div style="margin-bottom:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                    <label for="student-name" style="font-weight:600">Ім'я учня:</label>
+                    <input id="student-name" name="studentName" class="short" type="text" placeholder="Ваше ім'я (обов'язково)" required>
+                </div>
+                <ol>
+                    <li>
+                        <p>1. Що означає абревіатура HTML?</p>
+                        <label class="option"><input type="radio" name="q1" value="html"> HyperText Markup Language</label>
+                        <label class="option"><input type="radio" name="q1" value="http"> HyperText Transfer Protocol</label>
+                    </li>
+
+                    <li>
+                        <p>2. Для чого використовується CSS?</p>
+                        <label class="option"><input type="radio" name="q2" value="style"> Для стилізації сторінки</label>
+                        <label class="option"><input type="radio" name="q2" value="structure"> Для структури та семантики</label>
+                    </li>
+
+                    <li>
+                        <p>3. Якою мовою додають логіку й інтерактивність на веб-сторінку?</p>
+                        <label class="option"><input type="radio" name="q3" value="js"> JavaScript</label>
+                        <label class="option"><input type="radio" name="q3" value="css"> CSS</label>
+                    </li>
+
+                    <li>
+                        <p>4. Який HTML-тег використовується для підключення зовнішнього CSS-файлу?</p>
+                        <label class="option"><input type="radio" name="q4" value="link"> &lt;link&gt;</label>
+                        <label class="option"><input type="radio" name="q4" value="script"> &lt;script&gt;</label>
+                    </li>
+
+                    <li>
+                        <p>5. Який тег використовується для створення нумерованого списку?</p>
+                        <label class="option"><input type="radio" name="q5" value="ol"> &lt;ol&gt;</label>
+                        <label class="option"><input type="radio" name="q5" value="ul"> &lt;ul&gt;</label>
+                    </li>
+
+                    <li>
+                        <p>6. Який атрибут тега &lt;img&gt; містить шлях до зображення?</p>
+                        <label class="option"><input type="radio" name="q6" value="src"> src</label>
+                        <label class="option"><input type="radio" name="q6" value="href"> href</label>
+                    </li>
+
+                    <li>
+                        <p>7. Який протокол використовується для безпечної передачі даних у вебі?</p>
+                        <label class="option"><input type="radio" name="q7" value="https"> HTTPS</label>
+                        <label class="option"><input type="radio" name="q7" value="http"> HTTP</label>
+                    </li>
+
+                    <li>
+                        <p>8. Що таке DOM?</p>
+                        <label class="option"><input type="radio" name="q8" value="model"> Document Object Model — модель об'єктів документа</label>
+                        <label class="option"><input type="radio" name="q8" value="language"> HTML як мова розмітки (не DOM)</label>
+                    </li>
+
+                    <li>
+                        <p>9. Який тег семантично позначає заголовок рівня 2?</p>
+                        <label class="option"><input type="radio" name="q9" value="h2"> &lt;h2&gt;</label>
+                        <label class="option"><input type="radio" name="q9" value="p"> &lt;p&gt;</label>
+                    </li>
+
+                    <li>
+                        <p>10. Яка властивість CSS змінює колір тексту?</p>
+                        <label class="option"><input type="radio" name="q10" value="color"> color</label>
+                        <label class="option"><input type="radio" name="q10" value="background"> background-color</label>
+                    </li>
+
+                    <li>
+                        <p>11. Який оператор використовується в JS для порівняння без приведення типів?</p>
+                        <label class="option"><input type="radio" name="q11" value="==="> ===</label>
+                        <label class="option"><input type="radio" name="q11" value="=="> ==</label>
+                    </li>
+
+                    <li>
+                        <p>12. Який HTML-атрибут робить посилання відкриватись у новій вкладці?</p>
+                        <label class="option"><input type="radio" name="q12" value="target_blank"> target="_blank"</label>
+                        <label class="option"><input type="radio" name="q12" value="rel"> rel</label>
+                    </li>
+                </ol>
+
+                <div class="quiz-actions">
+                    <button type="submit" class="btn primary">Перевірити</button>
+                    <button type="button" id="show-answers" class="btn" disabled aria-disabled="true" title="Доступно після перевірки">Показати відповіді</button>
+                    <button type="button" id="reset-quiz" class="btn">Очистити</button>
+                </div>
+            </form>
+
+            <div id="result" class="result" aria-live="polite"></div>
+            <div id="teacher-note" class="teacher-note" hidden>
+                <h3>Для вчителя</h3>
+                <p>Максимум: 12 балів. 1 бал за кожну правильну відповідь.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Міні Сайт — Тест</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
