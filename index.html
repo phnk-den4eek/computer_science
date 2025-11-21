@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Міні Сайт</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="hero">
+        <nav class="nav container">
+            <a class="logo" href="index.html">МініСайт</a>
+            <ul class="nav-links">
+                <li><a href="about.html">Про сайт</a></li>
+                <li><a href="quiz.html" class="btn small">Почати тест</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-inner container">
+            <div class="hero-text">
+                <h1>Вивчай інформатику цікаво</h1>
+                <p class="lead">Інтерактивні вправи та короткі пояснення — підготуйся до оцінки і отримай 12/12.</p>
+                <div class="hero-cta">
+                    <a href="quiz.html" class="btn primary large">Почати тест</a>
+                    <a href="about.html" class="btn ghost">Дізнатися більше</a>
+                </div>
+            </div>
+            <div class="hero-art">
+                <!-- Decorative SVG -->
+                <svg width="360" height="240" viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="g1" x1="0" x2="1">
+                            <stop offset="0" stop-color="#7b68ee"/>
+                            <stop offset="1" stop-color="#5ad0ff"/>
+                        </linearGradient>
+                    </defs>
+                    <rect rx="18" width="360" height="240" fill="url(#g1)" opacity="0.95" />
+                    <g transform="translate(20,20)" fill="rgba(255,255,255,0.12)">
+                        <circle cx="40" cy="40" r="30" />
+                        <rect x="120" y="30" width="90" height="70" rx="10" />
+                        <path d="M 40 140 q 40 -40 80 0 t 80 0" stroke="rgba(255,255,255,0.18)" stroke-width="6" fill="none" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section" style="padding-top:28px;">
+            <div class="card" style="display:flex;gap:16px;flex-wrap:wrap;align-items:stretch;">
+                <div style="flex:1;min-width:220px">
+                    <h2>Що тут є</h2>
+                    <p class="lead">Інтерактивний тест, короткі пояснення та приємний інтерфейс — все, щоб легко підготуватися до оцінки з інформатики.</p>
+                </div>
+                <div style="flex:1;min-width:220px;display:flex;flex-direction:column;gap:8px;justify-content:center">
+                    <a href="quiz.html" class="btn primary">Розпочати тест</a>
+                    <a href="about.html" class="btn ghost">Детальніше про сайт</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Міні Сайт. Усі права захищено.</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
