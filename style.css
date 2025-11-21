@@ -1,0 +1,121 @@
+/* Покращений стиль — сучасна палітра, шрифти, картки та анімації */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root{
+    --bg:#0f1724; /* dark fallback */
+    --surface:#ffffff;
+    --muted:#6b7280;
+    --accent-1:#6a5acd;
+    --accent-2:#5ad0ff;
+    --glass: rgba(255,255,255,0.06);
+}
+
+html,body{height:100%;}
+body{
+    margin:0;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background: linear-gradient(180deg,#f5f7fb,#eef3ff);
+    color:#0f1724;
+    -webkit-font-smoothing:antialiased;
+}
+
+.container{width:92%;max-width:1100px;margin:0 auto;}
+
+/* Навігація */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
+.logo{font-weight:700;color:var(--accent-1);text-decoration:none;font-size:1.1rem}
+.nav-links{list-style:none;padding:0;margin:0;display:flex;gap:12px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px}
+.nav-links a:hover{background:rgba(106,90,205,0.06);color:var(--accent-1)}
+
+/* Hero */
+.hero{padding:44px 0 36px;background:linear-gradient(135deg,#eef2ff,#f8fdff);box-shadow:0 6px 30px rgba(16,24,40,0.04)}
+.hero.small{padding-top:18px;padding-bottom:18px}
+.hero-inner{display:flex;gap:28px;align-items:center;justify-content:space-between;padding:24px 0}
+.hero-text h1{font-size:2.1rem;margin:0;color:#0b1220}
+.lead{color:var(--muted);margin-top:8px}
+.hero-cta{margin-top:16px;display:flex;gap:12px}
+.hero-art{display:flex;align-items:center}
+
+/* Кнопки */
+.btn{display:inline-block;background:transparent;color:var(--accent-1);padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;border:1px solid transparent;transition:all .18s ease}
+.btn.small{padding:8px 12px;font-size:0.95rem}
+.btn.ghost{background:transparent;border:1px solid rgba(15,23,36,0.06);color:var(--muted)}
+.btn.primary{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:white;border:none;box-shadow:0 8px 24px rgba(90,208,255,0.08)}
+.btn.large{padding:14px 22px;border-radius:14px}
+.btn:hover{transform:translateY(-2px)}
+
+/* Стиль для відключених кнопок */
+.btn[disabled], .btn[aria-disabled="true"], .btn:disabled{
+    opacity:0.5;
+    cursor:not-allowed;
+    transform:none;
+    box-shadow:none;
+}
+
+/* Секції */
+.section{padding:48px 0}
+.card{background:var(--surface);border-radius:14px;padding:20px;box-shadow:0 10px 30px rgba(16,24,40,0.06);}
+
+/* Стиль для тесту */
+.quiz.card{max-width:980px;margin:20px auto;padding:28px;border-radius:14px}
+.quiz.card ol{padding-left:1rem}
+.quiz.card li{margin:14px 0;padding:12px;border-radius:10px;background:linear-gradient(180deg,#ffffff,#fbfcff);border:1px solid rgba(15,23,36,0.04)}
+.card, .quiz.card li{transition:transform .26s cubic-bezier(.2,.9,.2,1), box-shadow .26s cubic-bezier(.2,.9,.2,1), background .18s ease}
+.card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 18px 40px rgba(16,24,40,0.12)}
+.quiz.card li:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(16,24,40,0.06)}
+.card:active, .quiz.card li:active{transform:translateY(-2px) scale(0.999)}
+
+/* Підтримка для користувачів, які хочуть зменшити анімацію */
+@media (prefers-reduced-motion: reduce){
+    .card, .quiz.card li, .option, .btn{transition:none !important;transform:none !important}
+}
+.option{display:block;margin-top:8px;padding:8px 10px;border-radius:8px;cursor:pointer;transition:all .12s ease}
+.option input{margin-right:8px}
+.option:hover{transform:translateX(4px);background:rgba(90,208,255,0.03)}
+.short{padding:10px;border-radius:8px;border:1px solid rgba(15,23,36,0.06);width:120px}
+.quiz .quiz-actions{margin-top:18px;display:flex;gap:12px;justify-content:center}
+.result{margin-top:16px;font-weight:700;color:#0f1724}
+.teacher-note{margin-top:12px;background:#fbfdff;border-radius:10px;padding:12px;border:1px solid rgba(90,208,255,0.14)}
+
+/* Візуальні підказки */
+.option.correct{background:#e6fff0;border-color:#b6f0c9}
+.option.wrong{background:#fff0f0;border-color:#f3b6b6}
+.short.correct{outline:3px solid rgba(70,200,120,0.18)}
+.short.wrong{outline:3px solid rgba(255,120,120,0.14)}
+
+/* Entry overlay (role select) */
+.entry-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(15,23,36,0.45),rgba(15,23,36,0.55));z-index:120}
+.entry-card{background:var(--surface);padding:22px;border-radius:12px;max-width:520px;width:92%;box-shadow:0 20px 50px rgba(10,12,20,0.3);text-align:center}
+.entry-card h2{margin:0 0 8px}
+.entry-card p{color:var(--muted);margin:0 0 14px}
+.entry-actions{display:flex;gap:12px;justify-content:center;margin-bottom:12px}
+.teacher-login{display:flex;flex-direction:column;gap:8px;align-items:center;margin-top:8px}
+.teacher-error{color:#b00020;font-size:0.95rem;margin-top:6px}
+
+/* Стилі таблиці списку подань */
+#teacher-submissions table{width:100%;border-collapse:collapse;font-size:0.95rem}
+#teacher-submissions th, #teacher-submissions td{padding:8px;border-bottom:1px solid rgba(15,23,36,0.04);text-align:left}
+#teacher-submissions tr:hover{background:rgba(90,208,255,0.03)}
+#teacher-submissions .sub-actions button{margin-right:6px}
+
+
+/* Footer */
+footer{padding:28px 0;text-align:center;color:var(--muted)}
+
+/* Мобільні налаштування */
+@media (max-width:900px){
+    .hero-inner{flex-direction:column;align-items:flex-start}
+    .hero-art{display:none}
+    .hero-text h1{font-size:1.6rem}
+}
+
+@media print{
+    .nav, .hero-cta, .quiz-actions, .btn{display:none !important}
+    .card{box-shadow:none;border:1px solid rgba(0,0,0,0.04)}
+}
+
+/* невеликі анімації */
+@keyframes floatUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+body .hero-text h1{animation:floatUp .9s ease both}
+
